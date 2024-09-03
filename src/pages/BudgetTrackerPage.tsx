@@ -16,10 +16,12 @@ const BudgetTrackerPage = () => {
   const [newExpense, setNewExpense] = useState({ name: '', amount: 0 });
 
   // Example: Fetch exchange rate using axios (adjust API endpoint accordingly)
-  // React.useEffect(() => {
-  //   axios.get(`API_URL?base=${budget.currency}&symbols=PHP`)
-  //     .then(response => setExchangeRate(response.data.rates.PHP))
-  // }, [budget.currency]);
+   React.useEffect(() => {
+   axios.get(`https://v6.exchangerate-api.com/v6/bbf250a0b2d50fa1cea905e9/latest/${budget.currency}`)
+    .then(response => setExchangeRate(response.data.conversion_rates.PHP))
+    .catch(error => console.error('Error fetching exchange rate:', error));
+}, [budget.currency]);
+
 
   const handleAddExpense = () => {
     const updatedExpenses = [...budget.expenses, newExpense];
