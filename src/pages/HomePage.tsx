@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 
@@ -12,7 +12,6 @@ const HomePage = () => {
   const handleCreateBudget = () => {
     setBudgets([...budgets, newBudget]);
     setShowPopup(false);
-    // Assuming the budget ID is its index
     navigate(`/budget/${budgets.length}`);
   };
 
@@ -39,11 +38,9 @@ const HomePage = () => {
             value={newBudget.currency}
             onChange={(e) => setNewBudget({ ...newBudget, currency: e.target.value })}
           >
-            {/* Populate this select with actual currency options fetched from the API */}
             <option value="PHP">PHP</option>
             <option value="USD">USD</option>
             <option value="EUR">EUR</option>
-            {/* Add more options here */}
           </select>
           <button onClick={handleCreateBudget}>Submit</button>
           <button onClick={() => setShowPopup(false)}>Cancel</button>
